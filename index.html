@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <ul id="parent">
+        <li>Первый</li>
+        <li>Второй</li>
+        <li>Третий</li>
+        <li>Четвертый</li>
+        <li>Пятый</li>
+    </ul>
+    <div>
+        LOl lolka, а теперь на русском: 
+    </div>
+    <h1>Список дел</h1>
+    <input type="text" placeholder="чО надо?">
+    <button id="add">Добавить</button>
+    <ol id="todo"></ol>
+    <script type="text/javascript">
+        $('li').hover(
+            function(){
+            $(this).siblings().css("background-color", "yellow");
+            $(this).css("background-color", "red");
+            $(this).next().css("background-color", "blue");
+            $(this).prev().css("background-color", "green");
+        }
+        );
+        $('div').before("<div>Пишем чушь</div>"); 
+        $('div').before("<br>"); 
+        $('div').append("лол лолка");
+        $(function()
+            {
+                $('#add').click
+                (function()
+                {
+                    var value=$('input').val();
+                    if(value == ""){
+                        alert("ну ты чО?")
+                    }
+                    else{
+                    var elem=$("<li></li>").text(value);
+                    $('#todo').append(elem);
+                    $('input').val("");
+                    $('ol').css("font-size", "20pt");
+                    }
+                    $('li').click(function(){
+                        $(this).css("text-decoration", "line-through");
+                        $(this).css("background-color", "red");
+                    });
+                });
+                $('input').keydown(function(e) {
+                    var value=$('input').val();
+                    if(e.keyCode === 13){
+                        if(value === ""){
+                            alert("ну ты чО?");
+                        }
+                        else{
+                            var value=$('input').val();
+                            var elem=$("<li></li>").text(value);
+                            $('#todo').append(elem);
+                            $('input').val(""); 
+                            $('ol').css("font-size", "20pt");     
+                        }
+                    $('li').click(function(){
+                        $(this).css("text-decoration", "line-through");
+                        $(this).css("background-color", "red");
+                    });
+                    }
+                 });
+            });
+    </script>
+
+</body>
+</html>
